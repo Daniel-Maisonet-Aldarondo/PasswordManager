@@ -1,0 +1,6 @@
+manager/User.java
+ manager.User
+manager/Link.java
+ manager.Link
+manager/Authenticator.java
+ manager.Authenticator
