@@ -58,28 +58,28 @@ public class Authenticator {
         	String usernameDB = "";
 
         	try {
-            		con = Link.linkToDB();//connect to db
-            		statement = con.createStatement();
-            		rs = statement.executeQuery("select user_name from users");
+            	con = Link.linkToDB();//connect to db
+            	statement = con.createStatement();
+            	rs = statement.executeQuery("select user_name from users");
 
-            		while(rs.next()) { // loop through the table and check for matches
-                		usernameDB = rs.getString("user_name");
+            	while(rs.next()) { // loop through the table and check for matches
+                	usernameDB = rs.getString("user_name");
 
-                		if(username.equals(usernameDB)) {
-                    		//invalid username return false
-                    		return false;
-                		}
+                	if(username.equals(usernameDB)) {
+                    	//invalid username return false
+                    	return false;
+                	}
 
-            		}
+            	}
         	}catch(Exception e) {
-            		e.printStackTrace();
+            	e.printStackTrace();
         	}
 
         	//valid id
         	try {
-            		statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
+            	statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
         	}catch(Exception e) {
-            		e.printStackTrace();
+            	e.printStackTrace();
         	}
        		return true;
     	}
