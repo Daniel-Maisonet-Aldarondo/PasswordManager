@@ -70,16 +70,16 @@ public class Authenticator {
                     	return false;
                 	}
 
-            	}
+            	} 
         	}catch(Exception e) {
-            	e.printStackTrace();
+            	    e.printStackTrace();
         	}
 
-        	//valid id
+        	//valid id 
         	try {
-            	statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
+            	    statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
         	}catch(Exception e) {
-            	e.printStackTrace();
+            	    e.printStackTrace();
         	}
        		return true;
     	}
