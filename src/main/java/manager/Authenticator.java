@@ -48,41 +48,41 @@ public class Authenticator {
 	public static boolean signUp(User user) {
         //before we add a new user, we need to check if the username is taken first
 
-        String username = user.getUsername();
-        String password = user.getPassword();
+        	String username = user.getUsername();
+        	String password = user.getPassword();
 
-        Connection con = null;
-        Statement statement = null;
-        ResultSet rs = null;
+        	Connection con = null;
+        	Statement statement = null;
+        	ResultSet rs = null;
 
-        String usernameDB = "";
+        	String usernameDB = "";
 
-        try {
-            con = Link.linkToDB();//connect to db
-            statement = con.createStatement();
-            rs = statement.executeQuery("select user_name from users");
+        	try {
+            	con = Link.linkToDB();//connect to db
+            	statement = con.createStatement();
+            	rs = statement.executeQuery("select user_name from users");
 
-            while(rs.next()) { // loop through the table and check for matches
-                usernameDB = rs.getString("user_name");
+            	while(rs.next()) { // loop through the table and check for matches
+                	usernameDB = rs.getString("user_name");
 
-                if(username.equals(usernameDB)) {
-                    //invalid username return false
-                    return false;
-                }
+                	if(username.equals(usernameDB)) {
+                    	//invalid username return false
+                    	return false;
+                	}
 
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+            	}
+        	}catch(Exception e) {
+            	e.printStackTrace();
+        	}
 
-        //valid id
-        try {
-            statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
+        	//valid id
+        	try {
+            	statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
+        	}catch(Exception e) {
+            		e.printStackTrace();
+        	}
+       		return true;
+    	}
 
 }
 		
