@@ -7,18 +7,11 @@ public class Link {
 
 	public static Connection linkToDB() {
 		Connection con = null;
-		String url = "jdbc:mysql:localhost:3306/PasswordManager";
+		String url = "jdbc:mysql://localhost:3306/PasswordManager";
 		String username = "manager";
 		String password = "Manager@123";
 
 		try {
-			
-			try {
-				Class.forName("com.mysql.jdbc.Driver");// make sure that the connection driver is loaded
-			}catch(ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
 			con = DriverManager.getConnection(url, username, password); // connect to database
 
 		}catch(Exception e) {

@@ -2,5 +2,7 @@ manager/User.java
  manager.User
 manager/Link.java
  manager.Link
+manager/Main.java
+ manager.Main
 manager/Authenticator.java
  manager.Authenticator

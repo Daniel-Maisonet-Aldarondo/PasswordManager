@@ -8,14 +8,14 @@ jar {
     archiveBaseName = 'gs-gradle'
     archiveVersion =  '0.1.0'
 }
-// end::jar[]
 
-// tag::dependencies[]
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
     implementation "joda-time:joda-time:2.2"
-	compile files("libs/mysql-connector-java-8.0.23.jar")
     testImplementation "junit:junit:4.12"
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+
 }
