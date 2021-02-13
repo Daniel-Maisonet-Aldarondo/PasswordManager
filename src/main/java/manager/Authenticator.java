@@ -12,14 +12,13 @@ public class Authenticator {
 		String username = user.getUsername();
 		String password = user.getPassword();
 
-		
-		Connection con = null;
-		Statement statement = null;
-		ResultSet rs = null;
-
 		String usernameDB = "";
 		String passwordDB = "";
 		int userId; // account id will be assigned once credentails are matched
+
+		Connection con = null;
+		Statement statement = null;
+		ResultSet rs = null;
 
 		try {
 			con = Link.linkToDB();// connecto to the database
@@ -50,12 +49,11 @@ public class Authenticator {
 
         	String username = user.getUsername();
         	String password = user.getPassword();
-
-        	Connection con = null;
-        	Statement statement = null;
-        	ResultSet rs = null;
-
         	String usernameDB = "";
+
+			Connection con = null;
+			Statement statement = null;
+			ResultSet rs = null;
 
         	try {
             	con = Link.linkToDB();//connect to db
@@ -77,9 +75,9 @@ public class Authenticator {
 
         	//valid id 
         	try {
-            	    statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
+            	statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
         	}catch(Exception e) {
-            	    e.printStackTrace();
+            	e.printStackTrace();
         	}
        		return true;
     	}

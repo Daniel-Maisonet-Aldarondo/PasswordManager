@@ -1,14 +1,18 @@
 package manager;
 
+import java.util.ArrayList;
+
 public class User {
 
-	String username;
-	String password;
-	int userId;
+	private String username;
+	private String password;
+	private int userId;
+	private ArrayList<Logins> userLogins;
 
 	public User (String username, String password) {
 		this.username = username;
 		this.password = password;
+		this.userLogins = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -26,6 +30,18 @@ public class User {
 	public int getId() {
 		return userId;
 	}
+
+	public void addUserLogin(Logins l) {
+		userLogins.add(l);
+	}
+
+	public void showLogins() {
+		for(Logins l: userLogins) {
+			System.out.println(l.getUrl());
+		}
+	}
+
+
 
 }
 
