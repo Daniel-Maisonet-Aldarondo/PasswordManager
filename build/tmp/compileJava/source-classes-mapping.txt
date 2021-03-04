@@ -1,12 +1,8 @@
-manager/User.java
- manager.User
-manager/Link.java
- manager.Link
-manager/Authenticator.java
- manager.Authenticator
-manager/Logins.java
- manager.Logins
-manager/Update.java
- manager.Update
 manager/Main.java
  manager.Main
+util/ConnectionUtil.java
+ util.ConnectionUtil
+util/User.java
+ util.User
+controlers/Login.java
+ controlers.Login

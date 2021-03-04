@@ -1,27 +1,27 @@
 package manager;
 
-public class Main {
-	public static void main(String[] args) {
-		User person = new User("bob","password");
-		User person1 = new User("fred", "hola");
-		
-		System.out.println(Authenticator.signUp(person1));
-		System.out.println(Authenticator.login(person));
-		System.out.println(Authenticator.login(person1));
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-		Logins log = new Logins("www.brugh","username","password");
-		Logins log1 = new Logins("www.woe","brugh","nuw");
-		Logins log2 = new Logins("www.dab", "hello", "nonono");
-		Update.updateDB(person1, log);
-		Update.updateDB(person,log1);
-		Update.updateDB(person1,log2);
-		Update.getLoginsDB(person1);
-		Update.getLoginsDB(person);
-		
-		person1.showLogins();
-		person.showLogins();
 
-		
+public class Main extends Application {
 
-	}
+    private double xOffSet = 0.0;
+    private double yOffSet = 0.0;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Password Manager");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

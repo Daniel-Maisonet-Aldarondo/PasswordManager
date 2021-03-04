@@ -1,24 +1,30 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'application'
+}
 
-mainClassName = 'manager.Main'
+group 'org.example'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
-jar {
-    archiveBaseName = 'gs-gradle'
-    archiveVersion =  '0.1.0'
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
 
 dependencies {
-    implementation "joda-time:joda-time:2.2"
-    testImplementation "junit:junit:4.12"
-	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
-	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+}
+javafx {
+    version = '11.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
 
+mainClassName='manager.Main'
+
+test {
+    useJUnitPlatform()
 }
