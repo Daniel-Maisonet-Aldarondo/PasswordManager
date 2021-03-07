@@ -1,8 +1,9 @@
-manager/Main.java
- manager.Main
+controllers/Dashboard.java
+ controllers.Dashboard
+ controllers.Dashboard$1
 util/ConnectionUtil.java
  util.ConnectionUtil
-util/User.java
- util.User
-controlers/Login.java
- controlers.Login
+manager/Main.java
+ manager.Main
+controllers/Login.java
+ controllers.Login
