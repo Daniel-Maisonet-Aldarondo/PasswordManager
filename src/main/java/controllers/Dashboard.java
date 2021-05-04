@@ -15,17 +15,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import util.ConnectionUtil;
+import util.Cypher;
+
 
 public class Dashboard implements Initializable {
 
@@ -46,6 +44,7 @@ public class Dashboard implements Initializable {
 
     @FXML
     private TableView table;
+
 
     PreparedStatement preparedStatement;
     Connection con;
@@ -68,7 +67,7 @@ public class Dashboard implements Initializable {
         try {
             ResultSet rs = con.createStatement().executeQuery(SQL);
 
-            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
+            for (int i = 1; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1).toUpperCase());
                 col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
@@ -103,9 +102,9 @@ public class Dashboard implements Initializable {
                 ObservableList row = FXCollections.observableArrayList();
                 for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
 
-                    row.add(rs.getString(i));
+                    row.add(Cypher.decrypt(rs.getString(i)));
                 }
-                System.out.println("Row [1] added " + row);
+                System.out.println("Row added " + row);
                 data.add(row);
 
             }
@@ -122,12 +121,14 @@ public class Dashboard implements Initializable {
             String st = "INSERT INTO container (user_id, Url, Username, Password) VALUES (?,?,?,?)";
             preparedStatement = (PreparedStatement) con.prepareStatement(st);
             preparedStatement.setString(1, String.valueOf(sessionId));
-            preparedStatement.setString(2, txtUrl.getText());
-            preparedStatement.setString(3, txtUsername.getText());
-            preparedStatement.setString(4, txtPassword.getText());
+            preparedStatement.setString(2, Cypher.cypher(txtUrl.getText()));
+            preparedStatement.setString(3, Cypher.cypher(txtUsername.getText()));
+            preparedStatement.setString(4, Cypher.cypher(txtPassword.getText()));
             preparedStatement.executeUpdate();
             showMessage(Color.GREEN, "Success");
             createRowList();
+            table.getSelectionModel().setCellSelectionEnabled(true);
+            table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             return;
 
         } catch (SQLException ex) {

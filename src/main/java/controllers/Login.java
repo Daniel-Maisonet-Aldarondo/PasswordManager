@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import util.Cypher;
 
 public class Login {
 
@@ -78,11 +79,11 @@ public class Login {
             resultSet = statement.executeQuery("select user_name from users");
             while(resultSet.next()) {
                 existingUsername = resultSet.getString("user_name");
-                if(existingUsername.equals(username)) {
+                if(existingUsername.equals(Cypher.cypher(username))) {
                     return false;
                 }
             }
-            statement.executeUpdate("insert into users (user_name,user_password) values ('"+username+"', '"+password+"');");
+            statement.executeUpdate("insert into users (user_name,user_password) values ('"+Cypher.cypher(username)+"', '"+Cypher.cypher(password)+"');");
             return true;
         }catch (Exception e) {
             showMessage(Color.RED, e.getMessage());
@@ -107,7 +108,7 @@ public class Login {
                 usernameDB = resultSet.getString("user_name");
                 passwordDB = resultSet.getString("user_password");
 
-                if(username.equals(usernameDB) && password.equals(passwordDB)) {
+                if(Cypher.cypher(username).equals(usernameDB) && Cypher.cypher(password).equals(passwordDB)) {
                     Dashboard.setSessionId(userId);
                     return true;
                 }
